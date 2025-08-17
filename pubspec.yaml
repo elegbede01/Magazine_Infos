@@ -1,4 +1,4 @@
-name: projet1
+name: projet1  #Magazine Infos
 description: "Magazine Infos est une application numérique dédiée à la diffusion d’actualités et d’analyses variées. Elle propose une interface simple et intuitive permettant d’accéder rapidement aux informations locales et internationales, organisées par catégories pour une lecture claire et agréable.."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
