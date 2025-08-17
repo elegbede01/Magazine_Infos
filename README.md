@@ -13,7 +13,7 @@ L’objectif est d’offrir :
 - une expérience interactive et moderne adaptée au numérique.
 
 # Aperçu 
-![Aperçu de l'application](img/rendu_activite.png)
+![Aperçu de l'application](img/rendu_activite.PNG)
 
 ## Getting Started
 
