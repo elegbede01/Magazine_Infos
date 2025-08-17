@@ -1,10 +1,23 @@
-# projet1
+# Magazine Infos
 
-A new Flutter project.
+Magazine Infos est une application / plateforme numérique conçue pour diffuser des informations variées, accessibles et actualisées. Elle propose des articles, actualités, analyses et rubriques thématiques (politique, économie, technologie, culture, sport, etc.) afin de tenir les utilisateurs informés en temps réel. 
+
+L’objectif est d’offrir :
+
+- une interface simple et intuitive pour consulter l’information,
+
+- un accès rapide aux actualités locales et internationales,
+
+- une organisation claire par catégories pour faciliter la lecture,
+
+- une expérience interactive et moderne adaptée au numérique.
+
+# Aperçu 
+![Aperçu de l'application](img/rendu_activite.png)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Ce projet est en cours de developpemet.
 
 A few resources to get you started if this is your first Flutter project:
 
