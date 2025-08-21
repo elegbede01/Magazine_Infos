@@ -61,6 +61,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/rendu_activite.PNG
+  #  - assets/images/Magazine.jpeg
+  #  - assets/images/Magazine.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
