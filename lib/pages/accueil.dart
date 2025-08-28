@@ -13,7 +13,7 @@ class PageAccueil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pages = const [_HomeTab(), _MagazineTab(), _ProfilTab()];
-    var image = Image.asset("assets/images/redacteur0.jpeg");
+    //var image = Image.asset("assets/images/redacteur0.jpeg");
     //var _currentIndex;
     return Scaffold(
       appBar: AppBar(
