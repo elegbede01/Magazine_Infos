@@ -3,6 +3,10 @@ import 'package:projet1/widgets/input.dart';
 //import 'package:projet1/modele/redacteur.dart';
 import 'package:projet1/modele/Redacteur.dart';
 import 'package:projet1/modele/databse/databaseManager.dart';
+import 'package:projet1/pages/listedesredacteurs.dart';
+//import 'package:projet1/pages/ListeRedacteurs.dart';
+//import 'package:projet1/pages/Listedesredacteurs.dart' hide Listedesredacteurs;
+//import 'package:projet1/pages/ListeRedacteurs.dart';
 
 class RedacteurInterface extends StatefulWidget {
   const RedacteurInterface({super.key});
@@ -13,10 +17,45 @@ class RedacteurInterface extends StatefulWidget {
 
 class _RedacteurInterfaceState extends State<RedacteurInterface> {
   final _formKey = GlobalKey<FormState>();
+  // final GlobalKey<ListeRedacteursState> _listeKey =
+  //     GlobalKey<_ListeRedacteursState>();
+
   //controlleurs
   final TextEditingController _nomController = TextEditingController();
   final TextEditingController _prenomController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+
+  void _ajouterRedacteur() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        Redacteur nouveau = Redacteur(
+          id: null,
+          nom: _nomController.text,
+          prenom: _prenomController.text,
+          email: _emailController.text,
+        );
+        await DatabaseManager.insertRedacteur(nouveau);
+        // Vide les champ
+        _nomController.clear();
+        _prenomController.clear();
+        _emailController.clear();
+
+        //_listeKey.currentState?.refresh();
+        //Affiche le Snackbar si le formulaire est valide
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Rédacteur ajouté avec succès ✅")),
+        );
+        setState(() {}); // Rafraichir la page
+        //rafraichir directement
+        //_formKey.currentState?.refresh();
+      } catch (e) {
+        print("Erreur insertion $e");
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Erreur: $e")));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +64,9 @@ class _RedacteurInterfaceState extends State<RedacteurInterface> {
       appBar: AppBar(title: const Text('Les Rédacteurs'), centerTitle: true),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
-        child: Center(
-          child: Container(
-            padding: EdgeInsets.only(top: 25, left: 20.0, right: 20.0),
-            child: Form(
+        child: Column(
+          children: [
+            Form(
               key: _formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -62,50 +100,24 @@ class _RedacteurInterfaceState extends State<RedacteurInterface> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 15),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      child: Text("Ajouter un rédacteur"),
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          //creer un objet  Redacteur
-                          try {
-                            Redacteur nouveau = Redacteur(
-                              id: null,
-                              nom: _nomController.text,
-                              prenom: _prenomController.text,
-                              email: _emailController.text,
-                            );
-                            await DatabaseManager.insertRedacteur(
-                              nouveau,
-                            ); // Vide les champ
-                            _nomController.clear();
-                            _prenomController.clear();
-                            _emailController.clear();
-
-                            // Vide les champs
-
-                            //Affiche le Snackbar si le formulaire est valide
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Rédacteur ajouté avec succès ✅"),
-                              ),
-                            );
-                          } catch (e) {
-                            print('Erreur insertion $e');
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Erreur: $e")),
-                            );
-                          }
-                        }
-                      },
+                      onPressed: _ajouterRedacteur,
+                      child: const Text("Ajouter"),
                     ),
                   ),
+                  const Divider(height: 30, thickness: 1),
                 ],
               ),
             ),
-          ),
+            SizedBox(
+              height: 400, //appel direct de la classe Listedesredacters
+              //child: ListeRedacteurs(key: _listeKey),
+              child: ListeRedacteurs(),
+            ),
+          ],
         ),
       ),
     );
