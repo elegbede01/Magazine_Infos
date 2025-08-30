@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+//import 'package:projet1/widgets/navbarside.dart';
+import 'package:projet1/widgets/redacteur.dart';
+//import 'package:projet1/widgets/navbarside.dart';
 
 /// ---- PAGE CONTENEUR (Scaffold + AppBar + Drawer + BottomNavigationBar) ----
 class PageAccueil extends StatelessWidget {
@@ -37,6 +40,8 @@ class PageAccueil extends StatelessWidget {
           ),
         ],
       ),
+
+      /// navbarside
       drawer: SizedBox(
         child: SizedBox(
           width: 280.0,
@@ -151,8 +156,26 @@ class PageAccueil extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text("Ajouter une news"),
+                  title: Text("Ajouter un Rédacteur"),
                   leading: Icon(Icons.newspaper),
+                  onTap: () {
+                    //onIndexChanged(0);
+                    //Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RedacteurInterface(),
+                      ), //route vers accueil
+                    );
+                  },
+                  // onTap: () {
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => RedacteurInterface(),
+                  //     ), //route vers accueil
+                  //   );
+                  // },
                 ),
                 ListTile(
                   title: Text("Paramètres"),
@@ -173,6 +196,7 @@ class PageAccueil extends StatelessWidget {
           ),
         ),
       ),
+
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         //currentIndex: _currentIndex,
@@ -219,6 +243,7 @@ class _HomeTab extends StatelessWidget {
           PartieTexte(),
           PartieIcone(),
           PartieRubrique(),
+          //RedacteurInterface(),
           //PartieButton(),
         ],
       ),
@@ -394,3 +419,65 @@ class PartieRubrique extends StatelessWidget {
     );
   }
 }
+
+// class RedacteurInterface extends StatefulWidget {
+//   const RedacteurInterface({super.key});
+
+//   @override
+//   State<RedacteurInterface> createState() => _RedacteurInterfaceState();
+// }
+
+// class _RedacteurInterfaceState extends State<RedacteurInterface> {
+//   final _formKey = GlobalKey<FormState>();
+//   //controlleurs
+//   final TextEditingController _nomController = TextEditingController();
+//   final TextEditingController _prenomController = TextEditingController();
+//   final TextEditingController _emailController = TextEditingController();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Ajouter un rédacteur'),
+//         centerTitle: true,
+//       ),
+//       body: SingleChildScrollView(
+//         padding: const EdgeInsets.all(20.0),
+//         child: Center(
+//           child: Container(
+//             padding: EdgeInsets.only(top: 25, left: 20.0, right: 20.0),
+//             child: Form(
+//               key: _formKey,
+//               child: Column(
+//                 mainAxisSize: MainAxisSize.min,
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   const Text(
+//                     "Ajouter un Redacteur",
+//                     style: TextStyle(
+//                       fontSize: 22.0,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                   Input(
+//                     label: "Nom",
+//                     hint: "Veuillez saisir le nom",
+//                     controller: _nomController,
+//                   ),
+//                   SizedBox(height: 10),
+//                   SizedBox(
+//                     width: double.infinity,
+//                     child: ElevatedButton(
+//                       onPressed: () {},
+//                       child: Text("Ajouter un rédacteur"),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
